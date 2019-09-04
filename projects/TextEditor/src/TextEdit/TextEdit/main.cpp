@@ -3,7 +3,7 @@
 #include <string>
 using namespace std;
 
-unsigned char border_char = 219;
+unsigned char border_char = 254;
 
 int main(void)
 {
@@ -27,22 +27,24 @@ int main(void)
 	curs_set(0); //no blinking cursor
 
 	//FUN STUFF HAPPENS HERE
+
 	for (int i = 0; i < num_cols; i++)
 	{
 		//top border
-		mvaddch(0, i, ACS_CKBOARD);
+		//mvaddch(0, i, ACS_DIAMOND);
 
 		//bottom border
-		mvaddch(num_rows - 1, i, ACS_CKBOARD);
+		mvaddch(num_rows - 1, i, ACS_DIAMOND);
 	}
 	for (int i = 0; i < num_rows; i++)
 	{
 		//left column
-		mvaddch(i, 0, ACS_CKBOARD);
+		mvaddch(i, 0, ACS_DIAMOND);
 
 		//right column
-		mvaddch(i, num_cols - 1, ACS_CKBOARD);
+		mvaddch(i, num_cols - 1, ACS_DIAMOND);
 	}
+
 
 	//tells curses to draw
 	refresh();
@@ -54,4 +56,6 @@ int main(void)
 	mvaddstr(0, 0, "Press any key to continue...");
 	result = getch();
 	endwin();
+
+
 }
