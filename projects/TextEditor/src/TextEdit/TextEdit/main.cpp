@@ -16,9 +16,9 @@ int main(void)
 	main_window = initscr();
 
 	//take up most of the screen
-	getmaxyx(main_window, num_rows, num_cols);
+	int window_y = getmaxyx(main_window, num_rows, num_cols);
 	resize_term(num_rows - 1, num_cols - 1);
-	getmaxyx(main_window, num_rows, num_cols);
+	int window_x = getmaxyx(main_window, num_rows, num_cols);
 
 	//turn off key echo
 	noecho();
@@ -45,9 +45,18 @@ int main(void)
 		mvaddch(i, num_cols - 1, ACS_DIAMOND);
 	}
 
-
 	//tells curses to draw
 	refresh();
+
+	//draw small box
+	initscr();
+
+	WINDOW* win = newwin(5, num_cols-10, 23, 6); //newwin(row, columns, y position, x position)
+
+	box(win, '|', '-');
+	touchwin(win);
+	wrefresh(win);
+
 	char result = getch();
 
 	//revert  back to normal console mode - turn things off
@@ -55,6 +64,8 @@ int main(void)
 	keypad(main_window, TRUE);
 	mvaddstr(0, 0, "Press any key to continue...");
 	result = getch();
+
+	
 	endwin();
 
 
