@@ -16,9 +16,9 @@ int main(void)
 	main_window = initscr();
 
 	//take up most of the screen
-	getmaxyx(main_window, num_rows, num_cols);
+	int window_y = getmaxyx(main_window, num_rows, num_cols);
 	resize_term(num_rows - 1, num_cols - 1);
-	getmaxyx(main_window, num_rows, num_cols);
+	int window_x = getmaxyx(main_window, num_rows, num_cols);
 
 	//turn off key echo
 	noecho();
@@ -45,9 +45,21 @@ int main(void)
 		mvaddch(i, num_cols - 1, ACS_DIAMOND);
 	}
 
-
 	//tells curses to draw
 	refresh();
+
+	//draw small box
+	initscr();
+
+	WINDOW* win = newwin(3, num_cols-2, 0, 1); //newwin(row, columns, y position, x position)
+
+	box(win, '|', '-'); //small box window
+	mvwaddstr(win, 1, 1, "File   Edit   Options   Tools   Help");
+
+	touchwin(win);
+	wrefresh(win);
+	// end of small box
+
 	char result = getch();
 
 	//revert  back to normal console mode - turn things off
@@ -55,6 +67,8 @@ int main(void)
 	keypad(main_window, TRUE);
 	mvaddstr(0, 0, "Press any key to continue...");
 	result = getch();
+
+	
 	endwin();
 
 
