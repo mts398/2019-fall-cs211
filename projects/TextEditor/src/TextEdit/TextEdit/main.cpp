@@ -3,8 +3,6 @@
 #include <string>
 using namespace std;
 
-unsigned char border_char = 254;
-
 int main(void)
 {
 	WINDOW* main_window = nullptr;
@@ -28,6 +26,7 @@ int main(void)
 
 	//FUN STUFF HAPPENS HERE
 
+	//===========MAIN_WINDOW BORDERS=========
 	for (int i = 0; i < num_cols; i++)
 	{
 		//top border
@@ -44,14 +43,13 @@ int main(void)
 		//right column
 		mvaddch(i, num_cols - 1, ACS_DIAMOND);
 	}
+	//========================================
 
 	//tells curses to draw
 	refresh();
 
-	//draw small box
-	initscr();
+	//===========draw small box===========
 
-<<<<<<< HEAD
 	WINDOW* win = newwin(3, num_cols-2, 0, 1); //newwin(row, columns, y position, x position)
 
 	box(win, '|', '-'); //small box window
@@ -59,14 +57,39 @@ int main(void)
 
 	touchwin(win);
 	wrefresh(win);
-	// end of small box
-=======
-	WINDOW* win = newwin(5, num_cols-10, 23, 6); //newwin(row, columns, y position, x position)
+	//=============end of small box===========
 
-	box(win, '|', '-');
-	touchwin(win);
-	wrefresh(win);
->>>>>>> b4966fbeadebfe2fccecc8616d366d74d50f2900
+	//==========TEXT BOX========
+
+	//WINDOW* textWin = nullptr;
+	//double textRow = num_rows/2;
+	//double textCol = num_cols/2;
+
+	//for (int i = 0; i < textCol; i++)
+	//{
+	//	//top border
+	//	mvaddch(0, i, ACS_DIAMOND);
+
+	//	//bottom border
+	//	mvaddch(textRow - 1, i, ACS_DIAMOND);
+	//}
+	//for (int i = 0; i < textRow; i++)
+	//{
+	//	//left column
+	//	mvaddch(i, 0, ACS_DIAMOND);
+
+	//	//right column
+	//	mvaddch(i, textCol - 1, ACS_DIAMOND);
+	//}
+	//
+	//char msg[] = "Enter a string: ";
+	//char str[80];
+
+	//getmaxyx(textWin, textRow, textCol);
+	//mvprintw(textRow / 2, (textRow - strlen(msg)) / 2, "%s", msg);
+
+
+	//==================================
 
 	char result = getch();
 
@@ -76,8 +99,7 @@ int main(void)
 	mvaddstr(0, 0, "Press any key to continue...");
 	result = getch();
 
-	
 	endwin();
 
-
+	return 0;
 }
