@@ -51,6 +51,7 @@ int main(void)
 	//draw small box
 	initscr();
 
+<<<<<<< HEAD
 	WINDOW* win = newwin(3, num_cols-2, 0, 1); //newwin(row, columns, y position, x position)
 
 	box(win, '|', '-'); //small box window
@@ -59,6 +60,13 @@ int main(void)
 	touchwin(win);
 	wrefresh(win);
 	// end of small box
+=======
+	WINDOW* win = newwin(5, num_cols-10, 23, 6); //newwin(row, columns, y position, x position)
+
+	box(win, '|', '-');
+	touchwin(win);
+	wrefresh(win);
+>>>>>>> b4966fbeadebfe2fccecc8616d366d74d50f2900
 
 	char result = getch();
 
