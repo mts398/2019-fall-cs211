@@ -26,6 +26,7 @@ int main(void)
 
 	//FUN STUFF HAPPENS HERE
 
+
 	//===========MAIN_WINDOW BORDERS=========
 	for (int i = 0; i < num_cols; i++)
 	{
@@ -44,7 +45,7 @@ int main(void)
 		mvaddch(i, num_cols - 1, ACS_DIAMOND);
 	}
 	//========================================
-
+	printw("Hi");
 	//tells curses to draw
 	refresh();
 
