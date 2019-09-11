@@ -45,20 +45,31 @@ int main(void)
 		mvaddch(i, num_cols - 1, ACS_DIAMOND);
 	}
 	//========================================
-	printw("Hi");
 	//tells curses to draw
 	refresh();
 
 	//===========draw small box===========
 
-	WINDOW* win = newwin(3, num_cols-2, 0, 1); //newwin(row, columns, y position, x position)
+	WINDOW* menuWin = newwin(3, num_cols-2, 0, 1); //newwin(lines, nlines, columns, ncols)
 
-	box(win, '|', '-'); //small box window
-	mvwaddstr(win, 1, 1, "File   Edit   Options   Tools   Help");
+	box(menuWin, ACS_VLINE, ACS_HLINE); //small box window
+	mvwaddstr(menuWin, 1, 1, "File   Edit   Options   Tools   Help");
 
-	touchwin(win);
-	wrefresh(win);
+
+	touchwin(menuWin);
+	wrefresh(menuWin);
 	//=============end of small box===========
+
+	WINDOW* statusWin = newwin(3, num_cols-2, 26, 1); //lines, width, vertical, horizontal
+	box(statusWin, ACS_VLINE, ACS_HLINE); //small box window
+	mvwaddstr(statusWin, 1, 1, "File type: .txt	|	Lines:	0	|	Text Editor");
+
+	touchwin(statusWin);
+	wrefresh(statusWin);
+
+
+	//========= end of textWinVer2==========
+
 
 	//==========TEXT BOX========
 
