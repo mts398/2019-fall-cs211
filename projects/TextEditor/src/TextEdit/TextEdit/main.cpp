@@ -48,60 +48,32 @@ int main(void)
 	//tells curses to draw
 	refresh();
 
-	//===========draw small box===========
-
+	//mapping out the menu bar
 	WINDOW* menuWin = newwin(3, num_cols-2, 0, 1); //newwin(lines, nlines, columns, ncols)
 
 	box(menuWin, ACS_VLINE, ACS_HLINE); //small box window
 	mvwaddstr(menuWin, 1, 1, "File   Edit   Options   Tools   Help");
 
-
 	touchwin(menuWin);
 	wrefresh(menuWin);
-	//=============end of small box===========
-
+	
+	//mapping out the status bar
 	WINDOW* statusWin = newwin(3, num_cols-2, 26, 1); //lines, width, vertical, horizontal
 	box(statusWin, ACS_VLINE, ACS_HLINE); //small box window
-	mvwaddstr(statusWin, 1, 1, "File type: .txt	|	Lines:	0	|	Text Editor");
+	mvwaddstr(statusWin, 1, 1, "File type: .txt	|	Lines:	0	|	Text Editor Milestone 1: A Location Map, WOOHOO!!!!");
 
 	touchwin(statusWin);
 	wrefresh(statusWin);
 
+	//mapping out the location of the line column counter
+	WINDOW* lineWin = newwin(num_rows-8, 4, 3, 2); //lines, width, vertical, horizontal
+	box(lineWin, ' ', ' '); //small box window
+	mvwaddstr(lineWin, 1, 1, " 1\n  2\n  3\n  4\n  5\n  6\n  7\n  8\n  9\n 10\n 11\n 12\n 13\n 14\n 15\n 16");
 
-	//========= end of textWinVer2==========
+	touchwin(lineWin);
+	wrefresh(lineWin);
 
-
-	//==========TEXT BOX========
-
-	//WINDOW* textWin = nullptr;
-	//double textRow = num_rows/2;
-	//double textCol = num_cols/2;
-
-	//for (int i = 0; i < textCol; i++)
-	//{
-	//	//top border
-	//	mvaddch(0, i, ACS_DIAMOND);
-
-	//	//bottom border
-	//	mvaddch(textRow - 1, i, ACS_DIAMOND);
-	//}
-	//for (int i = 0; i < textRow; i++)
-	//{
-	//	//left column
-	//	mvaddch(i, 0, ACS_DIAMOND);
-
-	//	//right column
-	//	mvaddch(i, textCol - 1, ACS_DIAMOND);
-	//}
-	//
-	//char msg[] = "Enter a string: ";
-	//char str[80];
-
-	//getmaxyx(textWin, textRow, textCol);
-	//mvprintw(textRow / 2, (textRow - strlen(msg)) / 2, "%s", msg);
-
-
-	//==================================
+	mvaddstr(4, 6, "  My first line of text.");
 
 	char result = getch();
 
