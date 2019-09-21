@@ -76,10 +76,16 @@ int main(int argc, char* argv[])
 	wrefresh(statusWin);
 
 	//text window
-	WINDOW* textWin = newwin(num_rows - 6, num_cols-4, 3, 2);
+	WINDOW* textWin = newwin(num_rows - 6, num_cols-6, 3, 5);
 	box(textWin, ACS_VLINE, ACS_HLINE);
-	touchwin(textWin);
-	wrefresh(textWin);
+	
+
+	//mapping out the location of the line column counter
+	WINDOW* lineWin = newwin(num_rows-8, 4, 3, 2); //lines, width, vertical, horizontal
+	mvwaddstr(lineWin, 1, 1, " 1\n  2\n  3\n  4\n  5\n  6\n  7\n  8\n  9\n 10\n 11\n 12\n 13\n 14\n 15\n 16");
+
+	touchwin(lineWin);
+	wrefresh(lineWin);
 
 	//reading from hello.txt
 	string line;
@@ -88,12 +94,13 @@ int main(int argc, char* argv[])
 	{
 		while (getline(myfile, line))
 		{
-			cout << line;
+			mvwaddstr(textWin, 3, 5, line.c_str());
 		}
 		myfile.close();
 	}
 	else cout << "Unable to open file";
-
+	touchwin(textWin);
+	wrefresh(textWin);
 	//mapping out the menu bar
 	//WINDOW* menuWin = newwin(3, num_cols-2, 0, 1); //newwin(lines, nlines, columns, ncols)
 
