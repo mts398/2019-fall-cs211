@@ -52,7 +52,7 @@ int main(int argc, char* argv[])
 	refresh();
 
 	//menu bar
-	WINDOW* menuWin = newwin(3, num_cols-2, 0, 1); //newwin(lines, nlines, columns, ncols)
+	WINDOW* menuWin = newwin(3, num_cols-2, 0, 1); //newwin(nlines, ncols, y, x)
 	box(menuWin, ACS_VLINE, ACS_HLINE); //small box window
 	mvwaddstr(menuWin, 1, 1, "File   Edit   Options   Tools   Help");
 	touchwin(menuWin);
@@ -72,7 +72,8 @@ int main(int argc, char* argv[])
 	wrefresh(lineWin);
 
 	//text window
-	WINDOW* textWin = newwin(num_rows - 6, num_cols-6, 3, 5);
+	WINDOW* textWin = newwin(3, num_cols-6, 3, 5);
+	scrollok(textWin, TRUE);
 	box(textWin, ACS_VLINE, ACS_HLINE);
 
 	//reading from hello.txt
